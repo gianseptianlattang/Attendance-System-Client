@@ -13,6 +13,7 @@ export const PayrollDetail = () => {
 
   if (result.length !== 0) {
     return result.map((item, index) => {
+      console.log(item.User.monthlySalary, item.totalSalary);
       return (
         <>
           <Tr key={item.id}>
@@ -20,7 +21,7 @@ export const PayrollDetail = () => {
             <Td>{item.monthYear}</Td>
             <Td>{item.totalWorkingDays}</Td>
             <Td>{item.totalSalary}</Td>
-            <Td>{item.User.monthlySalary - item.totalSalary}</Td>
+            <Td>- {item.User.monthlySalary - item.totalSalary}</Td>
           </Tr>
         </>
       );
