@@ -21,6 +21,8 @@ import { useNavigate } from "react-router-dom";
 
 const baseUrl = "http://localhost:8000/";
 let dataUser;
+let token;
+let role;
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().required("Email is required"),
@@ -30,9 +32,12 @@ const LoginSchema = Yup.object().shape({
 const fetchUser = async (values) => {
   try {
     const { data } = await axios.post(`${baseUrl}auth/login`, values);
-    const token = data.token;
+    dataUser = data.data;
+    token = dataUser.token;
+    role = dataUser.roleId;
     if (token) {
       localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
     }
     return ["success", data];
   } catch (err) {
@@ -73,6 +78,7 @@ export const Login = () => {
       const userLogin = await fetchUser(request);
       if (userLogin[0] === "success") {
         handleLoginToast("success", "Successfully logged in");
+        role === 1 ? navigate("/admin") : navigate("/employee");
       } else {
         handleLoginToast("error", "Failed to logged in");
       }
