@@ -21,10 +21,10 @@ import { useDispatch } from "react-redux";
 import { getAllEmployee } from "../../service/reducer/employeeReducer";
 
 const baseUrl = "http://localhost:8000/";
-const updateCashier = async (request) => {
+const updateSalary = async (request) => {
   const token = localStorage.getItem("token");
   try {
-    const { data } = await axios.patch(`${baseUrl}profile/user`, request, {
+    const { data } = await axios.patch(`${baseUrl}admin/salary`, request, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -41,7 +41,6 @@ const UpdateSchema = Yup.object().shape({
 });
 
 export const UpdateSalaryModal = ({ isOpen, onClose, item }) => {
-  console.log(item);
   const toast = useToast();
   const dispatch = useDispatch();
 
@@ -69,13 +68,14 @@ export const UpdateSalaryModal = ({ isOpen, onClose, item }) => {
     validationSchema: UpdateSchema,
     onSubmit: async () => {
       let request = inputType();
-      const result = await updateCashier(request);
+      console.log(request);
+      const result = await updateSalary(request);
       if (result[0] === "success") {
-        handleToast("success", "Successfully update cashier");
+        handleToast("success", "Successfully update salary");
         dispatch(getAllEmployee());
         onClose();
       } else {
-        handleToast("error", "Failed update cashier");
+        handleToast("error", "Failed update salary");
       }
     },
   });
