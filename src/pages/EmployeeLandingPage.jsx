@@ -12,6 +12,7 @@ import React from "react";
 import { Employee } from "../components/employee/Employee";
 import { useNavigate } from "react-router-dom";
 import { Attendance } from "../components/employee/Attendance";
+import { Payroll } from "../components/employee/Payroll";
 
 const LoginPage = () => {
   const toast = useToast();
@@ -49,16 +50,18 @@ const LoginPage = () => {
         <TabList>
           <Tab>Management</Tab>
           <Tab>Attendance</Tab>
-          <Tab>Report</Tab>
+          <Tab>Payroll</Tab>
         </TabList>
 
         <TabPanels>
           <TabPanel>
             <Employee />
           </TabPanel>
-          <TabPanel>{/* <Attendance /> */}</TabPanel>
           <TabPanel>
-            <p>Report</p>
+            <Attendance />
+          </TabPanel>
+          <TabPanel>
+            <Payroll />
           </TabPanel>
         </TabPanels>
       </Tabs>

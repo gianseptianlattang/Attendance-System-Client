@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from "../../service/reducer/employeeReducer";
 
-export const AttendanceDetail = () => {
+export const PayrollDetail = () => {
   const dispatch = useDispatch();
   const result = useSelector((state) => state.dataEmployee.reportUser);
 
@@ -12,14 +12,15 @@ export const AttendanceDetail = () => {
   }, []);
 
   if (result.length !== 0) {
-    return result[0].Attendances.map((item, index) => {
+    return result.map((item, index) => {
       return (
         <>
           <Tr key={item.id}>
             <Td>{index + 1}</Td>
-            <Td>{item.clockIn}</Td>
-            <Td>{item.clockOut}</Td>
-            <Td>{item.dailySalary}</Td>
+            <Td>{item.monthYear}</Td>
+            <Td>{item.totalWorkingDays}</Td>
+            <Td>{item.totalSalary}</Td>
+            <Td>{item.User.monthlySalary - item.totalSalary}</Td>
           </Tr>
         </>
       );

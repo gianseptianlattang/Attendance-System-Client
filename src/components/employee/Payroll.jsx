@@ -1,7 +1,7 @@
 import { Table, TableContainer, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
-import { AttendanceDetail } from "./AttendanceDetail";
+import { PayrollDetail } from "./PayrollDetail";
 
-export const Attendance = () => {
+export const Payroll = () => {
   return (
     <>
       <TableContainer borderWidth={2}>
@@ -15,19 +15,22 @@ export const Attendance = () => {
               <Th width="fit-content" color={"blue.500"}>
                 No
               </Th>
-              <Th width="40%" color={"blue.500"}>
-                Clock In
+              <Th width="50%" color={"blue.500"}>
+                Month Year
               </Th>
-              <Th width="40%" color={"blue.500"}>
-                Clock Out
+              <Th width="50%" color={"blue.500"}>
+                Total Working Days
               </Th>
-              <Th width="20%" color={"blue.500"}>
-                Daily Salary
+              <Th width="50%" color={"blue.500"}>
+                Total Salary
+              </Th>
+              <Th width="50%" color={"blue.500"}>
+                Deducted Salary
               </Th>
             </Tr>
           </Thead>
           <Tbody>
-            <AttendanceDetail />
+            <PayrollDetail />
           </Tbody>
         </Table>
       </TableContainer>
